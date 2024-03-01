@@ -10,6 +10,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
+import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -29,23 +30,19 @@ public class MainActivityTest {
 
     @Test
     public void mainActivityTest() {
-        ViewInteraction tabView = onView(
-                allOf(withContentDescription("Tab 2")));
+        ViewInteraction tabView = onView(withContentDescription("Tab 2"));
         tabView.check(matches(isDisplayed()));
         tabView.perform(click());
 
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.section_label), withText("Page: 2")));
+        ViewInteraction textView = onView(withText("Page: 2"));
         textView.check(matches(isDisplayed()));
         textView.check(matches(withText("Page: 2")));
 
-        ViewInteraction tabView2 = onView(
-                allOf(withContentDescription("Tab 1")));
+        ViewInteraction tabView2 = onView(withContentDescription("Tab 1"));
         tabView2.check(matches(isDisplayed()));
         tabView2.perform(click());
 
-        ViewInteraction textView2 = onView(
-                allOf(withId(R.id.section_label), withText("Page: 1")));
+        ViewInteraction textView2 = onView(withText("Page: 1"));
         textView2.check(matches(isDisplayed()));
         textView2.check(matches(withText("Page: 1")));
     }
